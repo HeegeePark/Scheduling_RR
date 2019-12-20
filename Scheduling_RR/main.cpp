@@ -4,7 +4,7 @@ using namespace std;
 
 //CONST
 const char READ_FILE_NAME[] = "Round-Robin_test.txt";
-const char WRITE_FILE_NAME[] = "Round-Robin_text_shcedulingResult.txt";
+const char WRITE_FILE_NAME[] = "Round-Robin_shcedulingResult.txt";
 const int MAX_PROCESS_NUMBER = 100;
 
 //Variable

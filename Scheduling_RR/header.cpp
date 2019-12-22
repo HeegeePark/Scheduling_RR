@@ -4,7 +4,6 @@
 #include <string>
 #include <cstdlib>
 #include <algorithm>
-#include <map>
 using namespace std;
 
 
@@ -88,15 +87,15 @@ void RRScheduling::set_ReadyQueue(ProcessClass **_pArray, int* _pArray_Index) {
 }
 
 // 프로세스가 작업을 완료하지 못하였을 경우, 다시 준비 큐의 back으로 push하는 함수 (파라미터 : 프로세스 인덱스)
-void RRScheduling::set_readyQueueBack(int _index) { readyQueue.push(_index); };
+void RRScheduling::set_readyQueueBack(int _index) { readyQueue.push(_index); }
 // 특정 스케줄링 인덱스(_index)의 스케줄링 정보 get하는 함수 (return : ptrExecutionProcess[_index])
-double * RRScheduling::get_ExecutionProcess(int _index) { return ptrExecutionProcess[_index]; };
+double * RRScheduling::get_ExecutionProcess(int _index) { return ptrExecutionProcess[_index]; }
 // 스케줄링 횟수를 get하는 함수 (return : executionIndex)
-int RRScheduling::get_executionIndex() { return executionIndex; };
+int RRScheduling::get_executionIndex() { return executionIndex; }
 // 타임 슬라이스를 get하는 함수 (return : quantom)
-double RRScheduling::get_quantum() { return quantum; };
+double RRScheduling::get_quantum() { return quantum; }
 // 스케줄링 시작할 때 맨 처음 실행시키는 프로세스 아이디 get하는 함수 (return : startIndex)
-int RRScheduling::get_startIndex() { return startIndex; };
+int RRScheduling::get_startIndex() { return startIndex; }
 // 준비 큐의 맨 앞에서 기다리는 프로세스(front) get하고 pop해주는 함수 (return : readyQueue.front())
 int RRScheduling::get_readyQueueFront() {
 	if (!readyQueue.empty()) {
@@ -105,8 +104,9 @@ int RRScheduling::get_readyQueueFront() {
 		return exec;
 	}
 }
+
 // 생성 벡터가 비어있는지 boolean으로 리턴해주는 함수 (return : produceMap.empty())
-bool RRScheduling::is_produceVecEmpty() { return produceVec.empty(); };
+bool RRScheduling::is_produceVecEmpty() { return produceVec.empty(); }
 // 프로세스들의 도착시간에 따라 도착했다면, 준비 큐에 push해주는 함수 (파라미터 : 현재시간)
 void RRScheduling::update_ReadyQueue(double _time) {
 	// vector 안 생성 단계의 프로세스들 중, 도착시간이 현재 시간보다 빠를 시(프로세스가 도착했다면), 준비 큐로 이동
@@ -222,7 +222,7 @@ void Scheduling(ProcessClass **_processArray, int*_processArray_Index, RRSchedul
 				_RRSch->set_Scheduling(
 					_processArray[executingIndex]->get_id(),		// 프로세스 아이디
 					currentTime,		// 시작시간
-					currentTime + _RRSch->get_quantum(),		// 종료시간 (현재시간 + Quantum
+					currentTime + _RRSch->get_quantum(),		// 종료시간 (현재시간 + Quantum)
 					currentTime - _processArray[executingIndex]->get_StopTime()		// 대기시간 (현재시간 - 해당 프로세스의 최근 중단 시간)
 				);
 				_processArray[executingIndex]->ExecutTime(_RRSch->get_quantum());		// 프로세스 잔여 시간 갱신
@@ -253,7 +253,7 @@ void Scheduling(ProcessClass **_processArray, int*_processArray_Index, RRSchedul
 
 // 스케줄링 실행결과를 cmd 창과 새로운 txt파일로 출력해주는 함수
 // 파라미터 : (스케줄링정보 객체, 총 프로세스 개수, READ용 txt파일 이름, WRITE용 txt파일 이름)
-void WirteExecutionResult(RRScheduling *_RRSch, int* _processArray_Index, const char *_READ_FILE_NAME, const char *_WRITE_FILE_NAME) {
+void WriteExecutionResult(RRScheduling *_RRSch, int* _processArray_Index, const char *_READ_FILE_NAME, const char *_WRITE_FILE_NAME) {
 
 	// 일기용, 쓰기용 파일 오픈 
 	fstream fin(_READ_FILE_NAME, ios::in);
@@ -302,10 +302,11 @@ void WirteExecutionResult(RRScheduling *_RRSch, int* _processArray_Index, const 
 	fin.close();
 	fout.close();
 
-}//end WirteExecutionResult
+}//end WriteExecutionResult
 
 
 // Array를 출력하는 함수 (개발 때 값 확인용 함수)
+// 파라미터 : (출력할 Array, Array 크기)
 void showCharArray(char *_showchar, int _charsize) {
 	for (int i = 0; i < _charsize; i++) {
 		if (_showchar[i] == NULL) { break; }
@@ -317,6 +318,7 @@ void showCharArray(char *_showchar, int _charsize) {
 
 
 // Array를 NULL로 초기화하는 함수
+// 파라미터 : (초기화할 Array, Array 크기)
 void resetCharArray(char *_resetchar, int _charsize) {
 	for (int i = 0; i < _charsize; i++) {
 		_resetchar[i] = NULL;

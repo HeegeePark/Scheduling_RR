@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <queue>
-#include <map>
 #include <vector>
 using namespace std;
 
@@ -29,7 +28,7 @@ public:
 
 
 
-/* FCFS 스케줄링 정보를 저장하는 클래스*/
+/* Round-Robin 스케줄링 정보를 저장하는 클래스*/
 class RRScheduling {
 private:
 	double **ptrExecutionProcess;		// 실행시킨 프로세스를 가리키는 더블포인터 (포인터가 가리키는 배열에 스케줄링 정보 저장)
@@ -46,11 +45,11 @@ public:
 	// 프로세스 실행시켜 스케줄링 정보를 클래스 객체에 저장하는 함수
 	// 파라미터 : (프로세스 아이디, 시작시간, 종료시간, 해당 프로세스의 대기시간)
 	void set_Scheduling(int _process_id, double _startTime, double _endTime, double _waitTime);
-	
+
 	// 스케줄링 시작 전, 준비 큐 대기시키는(set) 함수
 	// 파라미터 : (프로세스정보 객체, 프로세스 개수)
 	void set_ReadyQueue(ProcessClass **_pArray, int* _pArray_Index);
-	
+
 	void set_readyQueueBack(int _index);		// 프로세스가 작업을 완료하지 못하였을 경우, 다시 준비 큐의 back으로 push하는 함수 (파라미터 : 프로세스 인덱스)
 
 	// 특정 스케줄링 인덱스(_index)의 스케줄링 정보 get하는 함수 (return : ptrExecutionProcess[_index])
@@ -86,7 +85,7 @@ void Scheduling(ProcessClass **_processArray, int*_processArray_Index, RRSchedul
 
 // 스케줄링 실행결과를 cmd 창과 새로운 txt파일로 출력해주는 함수
 // 파라미터 : (스케줄링정보 객체, 총 프로세스 개수, READ용 txt파일 이름, WRITE용 txt파일 이름)
-void WirteExecutionResult(RRScheduling *_RRSch, int* _processArray_Index, const char *_READ_FILE_NAME, const char *_WRITE_FILE_NAME);
+void WriteExecutionResult(RRScheduling *_RRSch, int* _processArray_Index, const char *_READ_FILE_NAME, const char *_WRITE_FILE_NAME);
 
 // 배열 출력 함수 (개발 시 확인용)
 void showCharArray(char *, int);

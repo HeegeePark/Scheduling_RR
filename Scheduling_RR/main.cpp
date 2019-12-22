@@ -2,12 +2,12 @@
 #include "iostream"
 using namespace std;
 
-//CONST
+// CONST
 const char READ_FILE_NAME[] = "Round-Robin_test.txt";
 const char WRITE_FILE_NAME[] = "Round-Robin_shcedulingResult.txt";
 const int MAX_PROCESS_NUMBER = 100;
 
-//Variable
+// Variable
 ProcessClass *processArray[MAX_PROCESS_NUMBER];		//ProcessClass point Process[]
 int processArray_Index = 0;
 RRScheduling *RRSch = new RRScheduling(MAX_PROCESS_NUMBER);
@@ -27,8 +27,10 @@ void main() {
 
 	// 스케줄링 실행 결과를 cmd 및 txt 파일에 출력
 	cout << "\nStep3 : Write File" << endl;
-	WirteExecutionResult(RRSch, &processArray_Index, READ_FILE_NAME, WRITE_FILE_NAME);
+	WriteExecutionResult(RRSch, &processArray_Index, READ_FILE_NAME, WRITE_FILE_NAME);
 	cout << "\nResult File Name = " << WRITE_FILE_NAME << endl;
 
 	system("pause");
 }//end main
+
+
